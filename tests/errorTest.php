@@ -1,11 +1,9 @@
 <?php
 
-use PHPUnit\Framework\TestCase;
-
 /**
  *  @runTestsInSeparateProcess
  */
-class errorTest extends TestCase
+class errorTest extends PHPUnit_Framework_TestCase
 {
     /** 
      * @dataProvider tplProvider

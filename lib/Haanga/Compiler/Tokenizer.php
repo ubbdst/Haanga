@@ -435,7 +435,7 @@ class Haanga_Compiler_Tokenizer
             case 0: // match 
                 if (isset($data[$len]) && !$this->is_token_end($data[$len])) {
                     /* probably a variable name TRUEfoo (and not TRUE) */
-                    continue;
+                    continue 2;
                 }
                 $this->token = $token;
                 $this->value = $value;
@@ -558,7 +558,6 @@ class Haanga_Compiler_Tokenizer
     static function init($template, $compiler, $file='')
     {
         $lexer  = new Haanga_Compiler_Tokenizer($template, $compiler, $file);
-        file_put_contents('/tmp/foo.php', $file . "\n", FILE_APPEND);
         $parser = new Haanga_Compiler_Parser($lexer, $file);
 
         $parser->compiler = $compiler;
