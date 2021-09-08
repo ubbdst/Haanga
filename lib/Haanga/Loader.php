@@ -60,6 +60,11 @@ spl_autoload_register(function ($class) {
   'haanga_extension_filter_explode' => '/Extension/Filter/Explode.php',
   'haanga_extension_filter_isarray' => '/Extension/Filter/Isarray.php',
   'haanga_extension_filter_slugify' => '/Extension/Filter/Slugify.php',
+  'haanga_extension_filter_decodedescription' => '/Extension/Filter/Decodedescription.php',
+  'haanga_extension_filter_deurifier' => '/Extension/Filter/Deurifier.php',
+  'haanga_extension_filter_striptags' => '/Extension/Filter/Striptags.php',
+
+  
   'haanga_extension_tag' => '/Extension/Tag.php',
   'haanga_extension_tag_min' => '/Extension/Tag/Min.php',
   'haanga_extension_tag_upper' => '/Extension/Tag/Upper.php',
