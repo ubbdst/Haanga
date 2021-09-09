@@ -53,7 +53,7 @@ if (!defined('HAANGA_VERSION')) {
 class Haanga
 {
     protected static $cache_dir;
-    protected static $templates_dir=array('.');
+    protected static $templates_dir = array('.');
     protected static $debug;
     protected static $bootstrap = NULL;
     protected static $check_ttl;
@@ -258,13 +258,16 @@ class Haanga
 
     public static function getTemplatePath($file)
     {
+        $tpl = '';
+
         foreach (self::$templates_dir as $dir) {
-            $tpl = $dir .'/'.$file;
+            $tpl = $dir . '/' . $file;
             if (is_file($tpl)) {
                 return realpath($tpl);
             }
         }
-        throw new \RuntimeException("Cannot find {$file} file  (looked in " . implode(",", self::$templates_dir) . ")");
+
+        throw new \RuntimeException('Unable to find: ' . $tpl);
     }
 
     // safe_load(string $file, array $vars, bool $return, array $blocks) {{{
@@ -318,7 +321,7 @@ class Haanga
         }
 
         $php = self::$hash_filename ? $fnc : $file;
-        $php = self::$cache_dir.'/'.$php.'.php';
+        $php = self::$cache_dir . '/' .$php . '.php';
 
         $check = TRUE;
 
