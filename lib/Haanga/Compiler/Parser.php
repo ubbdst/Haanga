@@ -1764,7 +1764,18 @@ static public $yy_action = array(
     function yy_r2(){ $this->_retvalue = array();     }
 #line 1771 "lib/Haanga/Compiler/Parser.php"
 #line 87 "lib/Haanga/Compiler/Parser.y"
-    function yy_r3(){ if (count($this->yystack[$this->yyidx + 0]->minor)) $this->yystack[$this->yyidx + 0]->minor['line'] = $this->lex->getLine();  $this->_retvalue = $this->yystack[$this->yyidx + 0]->minor;     }
+    function yy_r3(): void
+    {
+        $result = $this->yystack[$this->yyidx + 0]->minor;
+        if ($result === null) {
+            return;
+        }
+
+        if (count($result)) {
+            $this->yystack[$this->yyidx + 0]->minor['line'] = $this->lex->getLine();
+        }
+        $this->_retvalue = $this->yystack[$this->yyidx + 0]->minor;
+    }
 #line 1774 "lib/Haanga/Compiler/Parser.php"
 #line 89 "lib/Haanga/Compiler/Parser.y"
     function yy_r4(){
