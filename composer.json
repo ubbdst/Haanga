@@ -7,12 +7,12 @@
             "email": "crodas@php.net"
         }
     ],
-    "require": {
-
-    },
     "autoload": {
         "classmap": [
             "lib/"
         ]
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
     }
 }
