@@ -18,7 +18,9 @@ Haanga::Configure($config);
 
 date_default_timezone_set('UTC');
 
-@mkdir(__DIR__ . "/tmp/");
+if (!mkdir($concurrentDirectory = __DIR__ . "/tmp/") && !is_dir($concurrentDirectory)) {
+    throw new \RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
+}
 foreach (glob(__DIR__ . "/tmp/*/*") as $file) {
     @unlink($file);
 }
