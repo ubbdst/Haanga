@@ -233,6 +233,27 @@ class Haanga
     }
     // }}}
 
+    /**
+     *  Compile one template and return a PHP function
+     *
+     *  @param string $tpl  Template body
+     *  @param array $context  Context variables useful to generate efficient code (for array, objects and array)
+     *
+     *  @return callback($vars=array(), $return=TRUE, $block=array())
+     */
+    public static function compile($tpl, $context=array())
+    {
+        $compiler = self::getCompiler(FALSE);
+
+        foreach ($context as $var => $value) {
+            $compiler->set_context($var, $value);
+        }
+
+        $code = $compiler->compile($tpl);
+
+        return create_function('$' . $compiler->getScopeVariable(NULL, TRUE) . '=array(), $return=TRUE, $blocks=array()', $code);
+    }
+
     public static function getTemplatePath($file)
     {
         $tpl = '';
