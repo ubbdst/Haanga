@@ -136,7 +136,7 @@ class Haanga
                 }
                 break;
             default:
-                continue;
+                continue 2;
             }
         }
     }
