@@ -156,7 +156,7 @@ class Haanga
         $dir = self::$cache_dir;
         if (!is_dir($dir)) { 
             $old = umask(0);
-            if (!mkdir($dir, 0777, TRUE)) {
+            if (!mkdir($dir, 0777, true) && !is_dir($dir)) {
                 throw new Haanga_Exception("{$dir} is not a valid directory");
             }
             umask($old);
@@ -215,7 +215,7 @@ class Haanga
                 call_user_func(self::$bootstrap);
             }
 
-            if (count(self::$compiler) != 0) {
+            if (count(self::$compiler) !== 0) {
                 foreach (self::$compiler as $opt => $value) {
                     Haanga_Compiler::setOption($opt, $value);
                 }
@@ -224,7 +224,10 @@ class Haanga
         }
 
         if ($checkdir && !$has_checkdir) {
-            self::checkCacheDir();
+            try {
+                self::checkCacheDir();
+            } catch (Haanga_Exception $e) {
+            }
             $has_checkdir = TRUE; 
         }
 
@@ -341,7 +344,9 @@ class Haanga
 
             if (!is_dir(dirname($php))) {
                 $old = umask(0);
-                mkdir(dirname($php), 0777, TRUE);
+                if (!mkdir($concurrentDirectory = dirname($php), 0777, true) && !is_dir($concurrentDirectory)) {
+                    throw new \RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
+                }
                 umask($old);
             }
             
