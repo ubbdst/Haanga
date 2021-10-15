@@ -287,7 +287,7 @@ class Haanga_Compiler
         }
 
 
-        $body->do_exec('extract', $this->getScopeVariable());
+        $body->do_exec('extract', $this->getScopeVariable(), EXTR_OVERWRITE);
         $body->do_if(hexpr(hvar('return'), '==', TRUE));
         $body->do_exec('ob_start');
         $body->do_endif();
