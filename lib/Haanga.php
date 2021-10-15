@@ -180,11 +180,11 @@ class Haanga
      *  The instance is already set up properly and resetted.
      *
      *
-     *  @param bool  $checkdir TRUE
+     * @param bool $checkdir TRUE
      *
-     *  @return Haanga_Compiler_Runtime
+     * @return Haanga_Compiler_Runtime
      */
-    protected static function getCompiler($checkdir=TRUE)
+    protected static function getCompiler(bool $checkdir = true)
     {
         static $compiler;
         static $has_checkdir = FALSE;
@@ -192,20 +192,19 @@ class Haanga
         if (!$compiler) {
 
             /* Load needed files (to avoid autoload as much as possible) */
-            $dir = dirname(__FILE__);
-            require_once "{$dir}/Haanga/AST.php";
-            require_once "{$dir}/Haanga/Compiler.php";
-            require_once "{$dir}/Haanga/Compiler/Runtime.php";
-            require_once "{$dir}/Haanga/Compiler/Parser.php";
-            require_once "{$dir}/Haanga/Compiler/Tokenizer.php";
-            require_once "{$dir}/Haanga/Generator/PHP.php";
-            require_once "{$dir}/Haanga/Extension.php";
-            require_once "{$dir}/Haanga/Extension/Filter.php";
-            require_once "{$dir}/Haanga/Extension/Tag.php";
+            require_once __DIR__ . '/Haanga/AST.php';
+            require_once __DIR__ . '/Haanga/Compiler.php';
+            require_once __DIR__ . '/Haanga/Compiler/Runtime.php';
+            require_once __DIR__ . '/Haanga/Compiler/Parser.php';
+            require_once __DIR__ . '/Haanga/Compiler/Tokenizer.php';
+            require_once __DIR__ . '/Haanga/Generator/PHP.php';
+            require_once __DIR__ . '/Haanga/Extension.php';
+            require_once __DIR__ . '/Haanga/Extension/Filter.php';
+            require_once __DIR__ . '/Haanga/Extension/Tag.php';
 
             /* load compiler (done just once) */
             if (self::$use_autoload) {
-                require_once "{$dir}/Haanga/Loader.php";
+                require_once __DIR__ . "/Haanga/Loader.php";
             }
 
             $compiler = new Haanga_Compiler_Runtime;
